@@ -1,0 +1,25 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+}
+
+.app-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px;
+}
+
+/* Legacy CSS mixed with modern - intentional */
+.employee-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px 0;
+  background: white;
+  border-radius: 4px;
+}
+
+.department-item {
+  background: #f9f9f9;
+  padding: 10px;
+  margin: 5px 0;
+}
