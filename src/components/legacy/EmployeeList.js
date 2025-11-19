@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { setEmployees } from '../../state/redux/actions'
-import { mockEmployees } from '../../mocks/mockEmployees'
+import { mockEmployees } from '../../mocks/employees'
 
 class EmployeeList extends Component {
   constructor(props) {

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Navigation from './components/shared/Navigation'
 import EmployeeList from './components/legacy/EmployeeList'
 import DepartmentOverview from './components/legacy/DepartmentOverview'
+import TeamsOverview from './components/legacy/TeamsOverview'
 import SearchBar from './components/modern/SearchBar'
 import { useAppState } from './state/contexts/AppStateContext'
 import './App.css'
@@ -16,6 +17,8 @@ function App() {
         return <EmployeeList searchTerm={searchTerm} />
       case 'departments':
         return <DepartmentOverview />
+      case 'teams':
+        return <TeamsOverview />
       default:
         return <EmployeeList searchTerm={searchTerm} />
     }

@@ -23,3 +23,19 @@
   padding: 10px;
   margin: 5px 0;
 }
+
+.team-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px 0;
+  background: white;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.team-card:hover {
+  cursor: pointer;
+  background: lightblue;
+}

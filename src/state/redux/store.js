@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
+import { mockTeams } from '../../mocks/teams'
 
 // Legacy reducer pattern
 const employeesReducer = (state = [], action) => {
@@ -13,7 +14,7 @@ const employeesReducer = (state = [], action) => {
   }
 }
 
-const teamsReducer = (state = [], action) => {
+const teamsReducer = (state = mockTeams, action) => {
   switch (action.type) {
     case 'ADD_TEAM':
       return [...state, action.payload]

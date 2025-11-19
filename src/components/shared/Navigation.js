@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAppState } from '../../state/contexts/AppStateContext'
 import './Navigation.css'
 
@@ -12,7 +11,7 @@ const Navigation = () => {
       </div>
       <ul className="nav-list">
         <li>
-          <button 
+          <button
             className={currentView === 'employees' ? 'active' : ''}
             onClick={() => setCurrentView('employees')}
           >
@@ -20,14 +19,21 @@ const Navigation = () => {
           </button>
         </li>
         <li>
-          <button 
+          <button
             className={currentView === 'departments' ? 'active' : ''}
             onClick={() => setCurrentView('departments')}
           >
             Departments
           </button>
         </li>
-        {/* Teams link will be added later */}
+        <li>
+          <button
+            className={currentView === 'teams' ? 'active' : ''}
+            onClick={() => setCurrentView('teams')}
+          >
+            Teams
+          </button>
+        </li>
       </ul>
     </nav>
   )
