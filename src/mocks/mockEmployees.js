@@ -1,4 +1,3 @@
-// src/data/mockEmployees.js
 export const mockEmployees = [
   { id: 1, name: 'John Doe', department: 'Engineering', email: 'john.doe@company.com' },
   { id: 2, name: 'Jane Smith', department: 'Marketing', email: 'jane.smith@company.com' },
