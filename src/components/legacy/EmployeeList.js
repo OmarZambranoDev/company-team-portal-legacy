@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux'
+import { setEmployees } from '../../state/redux/actions'
+import { mockEmployees } from '../../mocks/mockEmployees'
 
 class EmployeeList extends Component {
   constructor(props) {
@@ -11,20 +13,16 @@ class EmployeeList extends Component {
 
   componentDidMount() {
     // Simulate fetching data - in real app this would be an API call
-    const mockEmployees = [
-      { id: 1, name: 'John Doe', department: 'Engineering', email: 'john@company.com' },
-      { id: 2, name: 'Jane Smith', department: 'Marketing', email: 'jane@company.com' },
-      { id: 3, name: 'Mike Johnson', department: 'Engineering', email: 'mike@company.com' }
-    ]
     this.setState({ localEmployees: mockEmployees })
+    this.props.setEmployees(mockEmployees);
   }
 
   filterEmployees = () => {
     const { localEmployees } = this.state
     const { searchTerm } = this.props
-    
+
     if (!searchTerm) return localEmployees
-    
+
     return localEmployees.filter(employee =>
       employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       employee.department.toLowerCase().includes(searchTerm.toLowerCase())
@@ -53,4 +51,8 @@ const mapStateToProps = (state) => ({
   reduxEmployees: state.employees
 })
 
-export default connect(mapStateToProps)(EmployeeList)
+const mapDispatchToProps = {
+  setEmployees
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeList)
