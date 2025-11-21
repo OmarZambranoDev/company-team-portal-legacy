@@ -39,3 +39,18 @@
   cursor: pointer;
   background: lightblue;
 }
+
+.button {
+  background: lightgreen;
+  border-radius: 4px;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-color: grey;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.button:hover {
+  background: lightblue;
+}

@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 class TeamsOverview extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            addNewTeam: false,
+        }
     }
 
     //placeholder function, needed for modal
@@ -17,6 +20,12 @@ class TeamsOverview extends Component {
         return (
             <div className="team-list">
                 <h2>Teams ({teams.length})</h2>
+                <button
+                    className="button"
+                    onClick={() => this.setState({ addNewTeam: true })}
+                >
+                    Add Team
+                </button>
                 {teams.map(team => (
                     <div
                         key={team.id}
