@@ -1,28 +1,67 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import Modal from './Modal'
+import TeamForm from './TeamForm'
+import { addTeam, updateTeam } from '../../state/redux/actions'
 
 class TeamsOverview extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            addNewTeam: false,
+            isOpen: false,
+            addTeam: false,
+            selected: {}
         }
+
+        this.handleTeamClick = this.handleTeamClick.bind(this)
+        this.onClose = this.onClose.bind(this);
+        this.onSave = this.onSave.bind(this);
     }
 
-    //placeholder function, needed for modal
     handleTeamClick = (team) => {
-        console.log("Team clicked ", team.name)
+        this.setState({
+            selected: team,
+            isOpen: true,
+            addTeam: false,
+        });
+    }
+
+    onClose = () => {
+        this.setState({
+            isOpen: false,
+            selected: {},
+            addTeam: false,
+        });
+    }
+
+    onSave = (team, add) => {
+        this.setState({
+            isOpen: false,
+            selected: {},
+            addTeam: false
+        });
+
+        if (add) {
+            this.props.addTeam(team);
+        } else {
+            this.props.updateTeam(team.id, team);
+        }
+
     }
 
     render() {
-        const { teams } = this.props;
+        const { teams, employees } = this.props;
+        const { isOpen, selected, addTeam } = this.state;
 
         return (
             <div className="team-list">
                 <h2>Teams ({teams.length})</h2>
                 <button
                     className="button"
-                    onClick={() => this.setState({ addNewTeam: true })}
+                    onClick={() => this.setState({
+                        isOpen: true,
+                        addTeam: true
+                    })}
                 >
                     Add Team
                 </button>
@@ -38,6 +77,20 @@ class TeamsOverview extends Component {
                         <p>Members: {team.members.length}</p>
                     </div>
                 ))}
+                {isOpen &&
+                    <Modal
+                        onClose={this.onClose}
+                        title={addTeam ? "Add New Team" : "Edit Team"}
+                    >
+                        <TeamForm
+                            onSave={this.onSave}
+                            onClose={this.onClose}
+                            employees={employees}
+                            team={selected}
+                            teams={teams.length}
+                            add={addTeam}
+                        />
+                    </Modal>}
             </div>
         )
     }
@@ -46,6 +99,11 @@ class TeamsOverview extends Component {
 const mapStateToProps = (state) => ({
     employees: state.employees,
     teams: state.teams
-})
+});
 
-export default connect(mapStateToProps)(TeamsOverview)
+const mapDispatchToProps = {
+    addTeam,
+    updateTeam
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeamsOverview)
