@@ -46,16 +46,28 @@ class TeamsOverview extends Component {
         } else {
             this.props.updateTeam(team.id, team);
         }
-
     }
+
+    filterTeams = () => {
+    const { searchTerm, teams } = this.props;
+
+    if (!searchTerm) return teams;
+
+    return teams.filter(team =>
+      team.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      team.description.toLowerCase().includes(searchTerm.toLowerCase())||
+      team.project.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  }
 
     render() {
         const { teams, employees } = this.props;
         const { isOpen, selected, addTeam } = this.state;
+        const filteredTeams = this.filterTeams();
 
         return (
             <div className="team-list">
-                <h2>Teams ({teams.length})</h2>
+                <h2>Teams ({filteredTeams.length})</h2>
                 <button
                     className="button"
                     onClick={() => this.setState({
@@ -65,7 +77,7 @@ class TeamsOverview extends Component {
                 >
                     Add Team
                 </button>
-                {teams.map(team => (
+                {filteredTeams.map(team => (
                     <div
                         key={team.id}
                         className="team-card"

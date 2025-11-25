@@ -16,9 +16,9 @@ function App() {
       case 'employees':
         return <EmployeeList searchTerm={searchTerm} />
       case 'departments':
-        return <DepartmentOverview />
+        return <DepartmentOverview searchTerm={searchTerm} />
       case 'teams':
-        return <TeamsOverview />
+        return <TeamsOverview searchTerm={searchTerm} />
       default:
         return <EmployeeList searchTerm={searchTerm} />
     }
